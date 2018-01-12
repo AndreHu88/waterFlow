@@ -161,10 +161,27 @@ static NSString *sectionFooterIdentifier = @"sectionFooterIdentifier";
     return attributeArray;
 }
 
+
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     UICollectionViewLayoutAttributes *itemAttribute = self.cellLayoutDict[indexPath];
     return itemAttribute;
+}
+
+- (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)elementKind atIndexPath:(NSIndexPath *)indexPath{
+    
+    if (elementKind == UICollectionElementKindSectionHeader) {
+        
+        UICollectionViewLayoutAttributes *itemAttribute = self.headerLayoutDict[indexPath];
+        return itemAttribute;
+    }
+    
+    if (elementKind == UICollectionElementKindSectionFooter) {
+        
+        UICollectionViewLayoutAttributes *itemAttribute = self.footerLayoutDict[indexPath];
+        return itemAttribute;
+    }
+    return nil;
 }
 
 //返回当前的currentSize
